@@ -90,6 +90,10 @@ for the use of other modules.
 
 =over 4
 
+=item L<LZ4|https://lz4.github.io/lz4/>
+
+The LZ4 home page.
+
 =item L<Alien>
 
 Documentation on the Alien concept itself.
