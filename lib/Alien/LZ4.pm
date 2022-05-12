@@ -5,6 +5,10 @@ use warnings;
 use base qw( Alien::Base );
 use 5.008004;
 
+use Role::Tiny::With qw( with );
+
+with 'Alien::Role::Dino';
+
 1;
 
 =head1 NAME

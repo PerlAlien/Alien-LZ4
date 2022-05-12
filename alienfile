@@ -25,4 +25,5 @@ share {
     [ '%{make}', qw( -C build ), 'install' ],
   ];
   plugin 'Gather::IsolateDynamic';
+  plugin 'Gather::Dino';
 }
