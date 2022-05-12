@@ -6,9 +6,11 @@ use Alien::LZ4;
 alien_diag 'Alien::LZ4';
 alien_ok 'Alien::LZ4';
 
+if(0) { # not building lz4 for now
 run_ok([ qw(lz4 --version) ])
   ->success
   ->out_like(qr/LZ4 command line interface/);
+}
 
 my $xs = <<'END';
 #include "EXTERN.h"

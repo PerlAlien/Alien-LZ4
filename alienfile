@@ -10,11 +10,16 @@ share {
   );
   plugin Extract => 'tar.gz';
   plugin 'Build::CMake';
+  # Disable building `lz4` tool for now as it is dynamically linked by default
+  # by the CMake build.
+  my $build_tool = 0;
   build [
     ['%{cmake}',
       @{ meta->prop->{plugin_build_cmake}->{args} },
 
-      qw(-DLZ4_BUILD_CLI=ON),     # tool
+      (
+        qw(-DLZ4_BUILD_CLI=ON),     # tool
+      )x!!( $build_tool ),
       qw(-DBUILD_STATIC_LIBS=ON), # xs
       qw(-DBUILD_SHARED_LIBS=ON), # ffi
 
