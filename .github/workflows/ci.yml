@@ -8,7 +8,7 @@ on:
 
 env:
   PKG_NAME: LZ4
-  PKG_UBUNTU: liblz4-dev
+  PKG_UBUNTU: lz4 liblz4-dev
   PKG_HOMEBREW: lz4
   PKG_MSYS2_MINGW64: mingw-w64-x86_64-lz4
   PKG_MSYS2_MINGW64_DEPS: >-
