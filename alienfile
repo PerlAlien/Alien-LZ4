@@ -13,6 +13,7 @@ share {
   # Disable building `lz4` tool for now as it is dynamically linked by default
   # by the CMake build.
   my $build_tool = 0;
+  my $build_dir = '_build';
   build [
     ['%{cmake}',
       @{ meta->prop->{plugin_build_cmake}->{args} },
@@ -24,10 +25,10 @@ share {
       qw(-DBUILD_SHARED_LIBS=ON), # ffi
 
       qw(-S), '%{.install.extract}/build/cmake',
-      qw(-B build),
+      qw(-B), $build_dir,
     ],
-    [ '%{make}', qw( -C build ) ],
-    [ '%{make}', qw( -C build ), 'install' ],
+    [ '%{make}', qw( -C ), $build_dir ],
+    [ '%{make}', qw( -C ), $build_dir, 'install' ],
   ];
   plugin 'Gather::IsolateDynamic';
 }
