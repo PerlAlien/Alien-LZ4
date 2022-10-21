@@ -3,12 +3,10 @@ use alienfile;
 plugin PkgConfig => 'liblz4';
 
 share {
-  start_url 'https://github.com/lz4/lz4/releases';
-  plugin Download => (
-    filter  => qr/^v.*\.tar\.gz$/,
-    version => qr/([0-9\.]+)/,
+  plugin 'Download::GitHub' => (
+    github_user => 'lz4',
+    github_repo => 'lz4',
   );
-  plugin Extract => 'tar.gz';
   plugin 'Build::CMake';
   # Disable building `lz4` tool for now as it is dynamically linked by default
   # by the CMake build.
