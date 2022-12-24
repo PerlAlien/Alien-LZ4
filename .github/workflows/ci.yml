@@ -140,5 +140,7 @@ jobs:
           echo "ALIEN_INSTALL_TYPE=${{ matrix.alien-install-type }}" >> $GITHUB_ENV
 
       - name: Run tests
+        env:
+          ALIEN_BUILD_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cpanm --verbose --test-only .
