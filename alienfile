@@ -1,6 +1,14 @@
 use alienfile;
 
 plugin PkgConfig => 'liblz4';
+if(0) { # not building lz4 for now
+plugin 'Probe::CommandLine' => (
+  command   => 'lz4',
+  args      => [ '--version' ],
+  match     => qr/LZ4 command line interface/,
+  secondary => 1,
+);
+}
 
 share {
   plugin 'Download::GitHub' => (
