@@ -134,11 +134,18 @@ jobs:
         run: |
           cpanm --notest --installdeps .
 
+      - name: Install share install deps before setting ALIEN_INSTALL_TYPE
+        if: matrix.alien-install-type == 'share'
+        run: |
+          cpanm --notest Alien::cmake3 Net::SSLeay IO::Socket::SSL
+
       - name: Set ALIEN_INSTALL_TYPE
         shell: bash
         run: |
           echo "ALIEN_INSTALL_TYPE=${{ matrix.alien-install-type }}" >> $GITHUB_ENV
 
       - name: Run tests
+        env:
+          ALIEN_BUILD_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cpanm --verbose --test-only .
